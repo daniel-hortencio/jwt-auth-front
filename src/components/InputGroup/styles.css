@@ -1,0 +1,25 @@
+.InputGroup {
+    margin-bottom: 1rem;  
+    width: 100%;  
+}
+
+
+.InputGroup label {
+    margin: 0 0 0.2rem 1rem;
+    display: block;
+}
+
+.InputGroup input {
+    border: solid 2px #ccc;
+    outline: none;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    border-radius: 0.5rem;
+    width: 100%;  
+}
+
+.InputGroup input:focus {
+    border-color: royalblue;    
+}

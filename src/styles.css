@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ddd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font: 100%;
+    overflow: hidden;
+}
+
+ul {
+    list-style: none;
+}
+
+.bg-primary {
+    background-color: royalblue;
+}
+
+.color-primary {
+    color: royalblue;
+}
+
+.full-width {
+    width: 100%
+}

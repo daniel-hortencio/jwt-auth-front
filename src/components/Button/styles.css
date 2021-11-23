@@ -1,0 +1,21 @@
+button {
+    color: white;
+    border: none;
+    outline: none;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    justify-content: center;
+}
+
+button:disabled{
+    background-color: #aaa;
+    cursor: auto;
+}
+
+button svg {
+    margin-right: 1rem;
+}
