@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { GoCloudDownload, RiLogoutBoxLine } from 'react-icons/all'
+import Fade from 'react-reveal/Fade';
 
 import { api } from "../services/api";
 
@@ -77,124 +78,133 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: '1rem'
-      }}>
-        <Button
-          onClick={getUserInfos}
-          style={{ marginRight: '1rem' }}
-          disabled={sessionExpired}
-          isLoading={isfetchingData}
+      <Fade bottom>
+        <div
+          style={{
+            maxWidth: "1024px",
+            margin: "auto"
+          }}
         >
-          <GoCloudDownload color="#fff" size={24} /> Obter suas informações privadas
-        </Button>
-
-        <Button onClick={logout}>
-          <RiLogoutBoxLine color="#fff" size={24} /> Sair
-        </Button>
-      </div>
-
-      <ul
-        ref={listRef}
-        style={{
-          margin: '1rem 0',
-          flex: 'auto',
-          overflowY: 'scroll',
-          paddingRight: '0.5rem',
-          maxHeight: '80vh'
-        }}
-      >
-
-        {historicJWT.map((event, index) => (
-          <li key={index} style={{
+          <div style={{
             display: 'flex',
-            marginBottom: '1rem',
-            background: '#fff',
-            padding: '1rem',
-            borderRadius: '0.5rem'
+            alignItems: 'center',
+            paddingTop: '1rem'
           }}>
+            <Button
+              onClick={getUserInfos}
+              style={{ marginRight: '1rem' }}
+              disabled={sessionExpired}
+              isLoading={isfetchingData}
+            >
+              <GoCloudDownload color="#fff" size={24} /> Obter suas informações privadas
+            </Button>
 
-            <div style={{ width: '8rem' }}>
-              <div>{event.time.day}/{event.time.month}</div>
-              <div>{event.time.hours}:{event.time.minutes}:{event.time.seconds}</div>
-            </div>
+            <Button onClick={logout}>
+              <RiLogoutBoxLine color="#fff" size={24} /> Sair
+            </Button>
+          </div>
 
-            <div style={{
-              width: '100%',
-              borderLeft: 'solid 2px #eee',
-              paddingLeft: '1rem'
-            }}>
+          <ul
+            ref={listRef}
+            style={{
+              margin: '1rem 0',
+              flex: 'auto',
+              overflowY: 'scroll',
+              paddingRight: '0.5rem',
+              maxHeight: '80vh'
+            }}
+          >
 
-              {!!event.data?.tokenWasRefreshed &&
-                <h2 style={{
-                  wordBreak: 'break-word',
-                  fontWeight: 'bold',
-                  marginBottom: '0.5rem',
-                  fontSize: '1.2rem',
-                  color: "royalblue"
-                }}>
-                  Seu token foi atualizado!
-                </h2>
-              }
+            {historicJWT.map((event, index) => (
+              <li key={index} style={{
+                display: 'flex',
+                marginBottom: '1rem',
+                background: '#fff',
+                padding: '1rem',
+                borderRadius: '0.5rem'
+              }}>
 
-              {event.message &&
-                <h2 style={{
-                  wordBreak: 'break-word',
-                  fontWeight: 'bold',
-                  marginBottom: '0.5rem',
-                  fontSize: '1.2rem'
-                }}>
-                  {event.message}
-                </h2>
-              }
-
-              {event.token && event.refreshToken &&
-                <>
-                  <p style={{ wordBreak: 'break-word' }}>
-                    <strong>Token:</strong> {event.token}
-                  </p>
-                  <p style={{ wordBreak: 'break-word' }}>
-                    <strong>RefreshToken:</strong> {event.refreshToken.id}
-                  </p>
-                </>
-              }
-
-              {event.data &&
-                <div style={{ display: 'flex' }}>
-                  <img
-                    src={event.data.avatar}
-                    style={{
-                      objectFit: 'cover',
-                      width: '6rem',
-                      height: '6rem',
-                      borderRadius: '50%',
-                      marginRight: '1rem',
-
-                    }}
-                    alt={event.data.user}
-                  />
-                  <div style={{ wordBreak: 'break-word' }}>
-                    <p><strong>Nome: </strong> {event.data.user}</p>
-                    <p><strong>Email: </strong>{event.data.email}</p>
-                    <p><strong>Tel: </strong>{event.data.tel}</p>
-                    <p><strong>Salário: </strong>R$ {event.data.payment}</p>
-                  </div>
+                <div style={{ width: '8rem' }}>
+                  <div>{event.time.day}/{event.time.month}</div>
+                  <div>{event.time.hours}:{event.time.minutes}:{event.time.seconds}</div>
                 </div>
-              }
 
-              {event.refreshTokenExpired &&
-                <Button onClick={logout}>
-                  <RiLogoutBoxLine color="#fff" size={24} /> Voltar ao Login
-                </Button>
-              }
-            </div>
+                <div style={{
+                  width: '100%',
+                  borderLeft: 'solid 2px #eee',
+                  paddingLeft: '1rem'
+                }}>
 
-          </li>
-        ))}
+                  {!!event.data?.tokenWasRefreshed &&
+                    <h2 style={{
+                      wordBreak: 'break-word',
+                      fontWeight: 'bold',
+                      marginBottom: '0.5rem',
+                      fontSize: '1.2rem',
+                      color: "royalblue"
+                    }}>
+                      Seu token foi atualizado!
+                    </h2>
+                  }
 
-      </ul>
+                  {event.message &&
+                    <h2 style={{
+                      wordBreak: 'break-word',
+                      fontWeight: 'bold',
+                      marginBottom: '0.5rem',
+                      fontSize: '1.2rem'
+                    }}>
+                      {event.message}
+                    </h2>
+                  }
+
+                  {event.token && event.refreshToken &&
+                    <>
+                      <p style={{ wordBreak: 'break-word' }}>
+                        <strong>Token:</strong> {event.token}
+                      </p>
+                      <p style={{ wordBreak: 'break-word' }}>
+                        <strong>RefreshToken:</strong> {event.refreshToken.id}
+                      </p>
+                    </>
+                  }
+
+                  {event.data &&
+                    <div style={{ display: 'flex' }}>
+                      <img
+                        src={event.data.avatar}
+                        style={{
+                          objectFit: 'cover',
+                          width: '6rem',
+                          height: '6rem',
+                          borderRadius: '50%',
+                          marginRight: '1rem',
+
+                        }}
+                        alt={event.data.user}
+                      />
+                      <div style={{ wordBreak: 'break-word' }}>
+                        <p><strong>Nome: </strong> {event.data.user}</p>
+                        <p><strong>Email: </strong>{event.data.email}</p>
+                        <p><strong>Tel: </strong>{event.data.tel}</p>
+                        <p><strong>Salário: </strong>R$ {event.data.payment}</p>
+                      </div>
+                    </div>
+                  }
+
+                  {event.refreshTokenExpired &&
+                    <Button onClick={logout}>
+                      <RiLogoutBoxLine color="#fff" size={24} /> Voltar ao Login
+                    </Button>
+                  }
+                </div>
+
+              </li>
+            ))}
+
+          </ul>
+        </div>
+      </Fade>
     </DashboardLayout>
   );
 }

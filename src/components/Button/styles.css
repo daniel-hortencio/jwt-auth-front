@@ -13,6 +13,11 @@ button {
     overflow: hidden;
 }
 
+button:hover {
+    background-color: cornflowerblue;
+    transition: background-color 0.2s;
+}
+
 button:disabled{
     background-color: #aaa;
     cursor: auto;

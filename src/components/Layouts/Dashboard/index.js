@@ -1,3 +1,5 @@
+import Fade from 'react-reveal/Fade';
+
 import Logo from '../../Logo'
 
 const Dashboard = ({ children }) => {
@@ -7,25 +9,27 @@ const Dashboard = ({ children }) => {
             flexDirection: 'column',
             height: '100vh'
         }}>
-            <div style={{
-                background: 'white',
-                padding: '1rem',
-                display: 'flex',
-                alignItems: 'center'
-            }}>
-                <Logo />
+            <Fade top>
+                <div style={{
+                    background: 'white',
+                    padding: '1rem',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <Logo />
 
-                <h2
-                    style={{
-                        borderLeft: "solid 2px #eee",
-                        marginLeft: '1rem',
-                        paddingLeft: '1rem',
-                        color: '#888'
-                    }}
-                >
-                    Dashboard
-                </h2>
-            </div>
+                    <h2
+                        style={{
+                            borderLeft: "solid 2px #eee",
+                            marginLeft: '1rem',
+                            paddingLeft: '1rem',
+                            color: '#888'
+                        }}
+                    >
+                        Dashboard
+                    </h2>
+                </div>
+            </Fade>
 
             <div style={{
                 padding: '1rem'
