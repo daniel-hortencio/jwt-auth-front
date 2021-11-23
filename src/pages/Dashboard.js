@@ -170,8 +170,10 @@ function Dashboard() {
                       width: '6rem',
                       height: '6rem',
                       borderRadius: '50%',
-                      marginRight: '1rem'
+                      marginRight: '1rem',
+
                     }}
+                    alt={event.data.user}
                   />
                   <div style={{ wordBreak: 'break-word' }}>
                     <p><strong>Nome: </strong> {event.data.user}</p>
