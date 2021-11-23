@@ -13,7 +13,7 @@ function InputGroup({
         <div
             className="InputGroup"
         >
-            <label for={name}>
+            <label htmlFor={name}>
                 {label}
             </label>
             <input

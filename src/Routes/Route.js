@@ -12,8 +12,6 @@ function RouteComponent({
 }) {
     const { user } = useAuth()
 
-    console.log({ user: !!user, isPrivate })
-
     return (
         <ReactDOMRoute
             {...rest}

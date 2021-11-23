@@ -19,8 +19,9 @@ function Dashboard() {
   const listRef = useRef(null)
 
   useEffect(() => {
-    listRef.current.scrollTop = listRef.current.scrollHeight - listRef.current.offsetHeight
-
+    if (listRef) {
+      listRef.current.scrollTop = listRef.current.scrollHeight - listRef.current.offsetHeight
+    }
   }, [historicJWT])
 
   function getUserInfos() {
