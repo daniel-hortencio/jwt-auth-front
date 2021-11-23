@@ -1,3 +1,5 @@
+import Loader from '../Loader'
+
 import './styles.css'
 
 function InputGroup({
@@ -6,7 +8,8 @@ function InputGroup({
     onClick,
     style,
     disabled,
-    className
+    className,
+    isLoading = false
 }) {
     return (
         <button
@@ -16,6 +19,12 @@ function InputGroup({
             style={style}
             className={`bg-primary ${className}`}
         >
+            {isLoading &&
+                <span className="button-loader bg-primary">
+                    <Loader />
+                </span>
+            }
+
             {children}
         </button>
     )

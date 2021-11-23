@@ -9,7 +9,7 @@ import { getNow } from '../../utils/getNow'
 const AuthContext = createContext([])
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(undefined)
     const [historicJWT, setHistoricJWT] = useState([])
 
     const history = useHistory()
@@ -62,7 +62,7 @@ export function AuthProvider({ children }) {
         destroyCookie(null, 'JWT_Auth.refreshToken')
         destroyCookie(null, 'JWT_Auth.user')
 
-        setUser(null)
+        setUser(undefined)
 
         setHistoricJWT([])
     }

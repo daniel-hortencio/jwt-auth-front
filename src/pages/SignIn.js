@@ -12,11 +12,14 @@ function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [singInError, setSignInError] = useState(false)
+    const [isfetchingData, setIsFetchingData] = useState(false)
 
     const { signIn } = useAuth()
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        setIsFetchingData(true)
 
         api.post('/signin', { email, password })
             .then(({ data }) => {
@@ -26,6 +29,9 @@ function SignIn() {
                 console.log(err)
 
                 setSignInError(true)
+            })
+            .finally(() => {
+                setIsFetchingData(false)
             })
     }
 
@@ -78,6 +84,7 @@ function SignIn() {
                         type="submit"
                         className="full-width"
                         disabled={email === "" || password === ""}
+                        isLoading={isfetchingData}
                     >
                         Entrar
                     </Button>

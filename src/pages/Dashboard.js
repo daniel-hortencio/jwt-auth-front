@@ -14,6 +14,7 @@ function Dashboard() {
   const { push } = useHistory()
   const { historicJWT, signOut, newHistoricEvent } = useAuth()
   const [sessionExpired, setSessionExpired] = useState(false)
+  const [isfetchingData, setIsFetchingData] = useState(false)
 
   const listRef = useRef(null)
 
@@ -23,6 +24,8 @@ function Dashboard() {
   }, [historicJWT])
 
   function getUserInfos() {
+    setIsFetchingData(true)
+
     api.get('/userData')
       .then((res) => {
         const { data = undefined } = res
@@ -61,6 +64,9 @@ function Dashboard() {
         }
 
       })
+      .finally(() => {
+        setIsFetchingData(false)
+      })
   }
 
   function logout() {
@@ -72,12 +78,14 @@ function Dashboard() {
     <DashboardLayout>
       <div style={{
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: '1rem'
       }}>
         <Button
           onClick={getUserInfos}
-          style={{ margin: '0 1rem' }}
+          style={{ marginRight: '1rem' }}
           disabled={sessionExpired}
+          isLoading={isfetchingData}
         >
           <GoCloudDownload color="#fff" size={24} /> Obter suas informações privadas
         </Button>
@@ -90,7 +98,7 @@ function Dashboard() {
       <ul
         ref={listRef}
         style={{
-          margin: '2rem 0 1rem 0',
+          margin: '1rem 0',
           flex: 'auto',
           overflowY: 'scroll',
           paddingRight: '0.5rem',
